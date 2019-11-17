@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SplitWise1.Models.Friends>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FriendName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FriendName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Email }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Email }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Email })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                My Total Balance : <span>&#8377;</span>
+            </td>
+        </tr>
+    }
+
+</table>
+}
+else
+{
+    @Html.Action("Login", "Account");
+
+}
